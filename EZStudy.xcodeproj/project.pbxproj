@@ -21,7 +21,16 @@
 		A10000000000000000000002C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000000C /* Assets.xcassets */; };
 		A10000000000000000000002D /* InAppBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000000E /* InAppBrowserView.swift */; };
 		A10000000000000000000002E /* LinkedTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000000F /* LinkedTextEditor.swift */; };
-		A10000000000000000000002F /* FormattingToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000010 /* FormattingToolbar.swift */; };
+		A10000000000000000000002F /* FormattingToolbar.swift in Sources */
+		A200000000000000000000021 /* TabsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000000000000000000001 /* TabsManager.swift */; };
+		A200000000000000000000022 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000000000000000000002 /* AIService.swift */; };
+		A200000000000000000000023 /* HandwritingRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000000000000000000003 /* HandwritingRecognizer.swift */; };
+		A200000000000000000000024 /* PDFService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000000000000000000004 /* PDFService.swift */; };
+		A200000000000000000000025 /* NoteTabsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000000000000000000005 /* NoteTabsBar.swift */; };
+		A200000000000000000000026 /* AIAssistantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000000000000000000006 /* AIAssistantView.swift */; };
+		A200000000000000000000027 /* MathSolverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000000000000000000007 /* MathSolverView.swift */; };
+		A200000000000000000000028 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000000000000000000008 /* GraphView.swift */; };
+		A200000000000000000000029 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A200000000000000000000009 /* ImagePickerView.swift */; }; = {isa = PBXBuildFile; fileRef = A100000000000000000000010 /* FormattingToolbar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +49,16 @@
 		A10000000000000000000000E /* InAppBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppBrowserView.swift; sourceTree = "<group>"; };
 		A10000000000000000000000F /* LinkedTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedTextEditor.swift; sourceTree = "<group>"; };
 		A100000000000000000000010 /* FormattingToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattingToolbar.swift; sourceTree = "<group>"; };
+
+		A200000000000000000000001 /* TabsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsManager.swift; sourceTree = "<group>"; };
+		A200000000000000000000002 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
+		A200000000000000000000003 /* HandwritingRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandwritingRecognizer.swift; sourceTree = "<group>"; };
+		A200000000000000000000004 /* PDFService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFService.swift; sourceTree = "<group>"; };
+		A200000000000000000000005 /* NoteTabsBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTabsBar.swift; sourceTree = "<group>"; };
+		A200000000000000000000006 /* AIAssistantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAssistantView.swift; sourceTree = "<group>"; };
+		A200000000000000000000007 /* MathSolverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathSolverView.swift; sourceTree = "<group>"; };
+		A200000000000000000000008 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		A200000000000000000000009 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		A10000000000000000000000D /* EZStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -63,6 +82,7 @@
 				A100000000000000000000C06 /* ViewModels */,
 				A100000000000000000000C07 /* Views */,
 				A10000000000000000000000C /* Assets.xcassets */,
+				A200000000000000000000041 /* Services */,
 			);
 			path = EZStudy;
 			sourceTree = "<group>";
@@ -104,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				A100000000000000000000005 /* NotesStore.swift */,
+				A200000000000000000000001 /* TabsManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -120,8 +141,24 @@
 				A10000000000000000000000E /* InAppBrowserView.swift */,
 				A10000000000000000000000F /* LinkedTextEditor.swift */,
 				A100000000000000000000010 /* FormattingToolbar.swift */,
+				A200000000000000000000005 /* NoteTabsBar.swift */,
+				A200000000000000000000006 /* AIAssistantView.swift */,
+				A200000000000000000000007 /* MathSolverView.swift */,
+				A200000000000000000000008 /* GraphView.swift */,
+				A200000000000000000000009 /* ImagePickerView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+
+		A200000000000000000000041 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A200000000000000000000002 /* AIService.swift */,
+				A200000000000000000000003 /* HandwritingRecognizer.swift */,
+				A200000000000000000000004 /* PDFService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +244,15 @@
 				A10000000000000000000002D /* InAppBrowserView.swift in Sources */,
 				A10000000000000000000002E /* LinkedTextEditor.swift in Sources */,
 				A10000000000000000000002F /* FormattingToolbar.swift in Sources */,
+				A200000000000000000000021 /* TabsManager.swift in Sources */,
+				A200000000000000000000022 /* AIService.swift in Sources */,
+				A200000000000000000000023 /* HandwritingRecognizer.swift in Sources */,
+				A200000000000000000000024 /* PDFService.swift in Sources */,
+				A200000000000000000000025 /* NoteTabsBar.swift in Sources */,
+				A200000000000000000000026 /* AIAssistantView.swift in Sources */,
+				A200000000000000000000027 /* MathSolverView.swift in Sources */,
+				A200000000000000000000028 /* GraphView.swift in Sources */,
+				A200000000000000000000029 /* ImagePickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

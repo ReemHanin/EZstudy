@@ -16,6 +16,7 @@ enum NoteSortOrder: String, CaseIterable, Identifiable {
 
 struct NotebookDetailView: View {
     @EnvironmentObject var store: NotesStore
+    @EnvironmentObject var tabsManager: TabsManager
     let notebookId: UUID
 
     @State private var showingNewNote = false
@@ -51,6 +52,7 @@ struct NotebookDetailView: View {
                     ForEach(filteredNotes) { note in
                         NavigationLink(
                             destination: NoteEditorView(noteId: note.id, notebookId: notebookId)
+                                .environmentObject(tabsManager)
                         ) {
                             NoteCellView(note: note)
                         }
