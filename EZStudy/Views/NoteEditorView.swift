@@ -11,15 +11,15 @@ struct NoteEditorView: View {
     @State private var titleText = ""
     @State private var bodyText = ""
     @State private var drawingData: Data?
-    @State private var isEditingTitle = false
+    @State private var formatting = TextFormatting()
     @State private var hasUnsavedChanges = false
+    @State private var browserURL: IdentifiableURL?    // drives the in-app browser sheet
+    @State private var isKeyboardVisible = false
     @FocusState private var titleFocused: Bool
-    @FocusState private var bodyFocused: Bool
 
     enum EditorMode: String, CaseIterable {
         case text = "Text"
         case draw = "Draw"
-
         var icon: String {
             switch self {
             case .text: return "text.cursor"
@@ -30,7 +30,7 @@ struct NoteEditorView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            // Mode picker
+            // ── Mode picker ────────────────────────────────────────────────
             Picker("Mode", selection: $editorMode) {
                 ForEach(EditorMode.allCases, id: \.self) { mode in
                     Label(mode.rawValue, systemImage: mode.icon).tag(mode)
@@ -43,7 +43,7 @@ struct NoteEditorView: View {
 
             Divider()
 
-            // Content
+            // ── Content ────────────────────────────────────────────────────
             ZStack {
                 if editorMode == .text {
                     textEditorContent
@@ -53,33 +53,45 @@ struct NoteEditorView: View {
                 }
             }
             .animation(.easeInOut(duration: 0.15), value: editorMode)
+
+            // ── Formatting toolbar (text mode, keyboard visible) ───────────
+            if editorMode == .text && isKeyboardVisible {
+                Divider()
+                FormattingToolbar(formatting: $formatting) {
+                    UIApplication.shared.sendAction(
+                        #selector(UIResponder.resignFirstResponder),
+                        to: nil, from: nil, for: nil
+                    )
+                }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
         }
-        .navigationTitle(titleText.isEmpty ? "Note" : titleText)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 titleField
             }
-            ToolbarItemGroup(placement: .keyboard) {
-                Button {
-                    bodyFocused = false
-                } label: {
-                    Image(systemName: "keyboard.chevron.compact.down")
-                }
-                Spacer()
-                Text(wordCountLabel)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
         }
         .onAppear(perform: loadNote)
         .onDisappear(perform: saveIfNeeded)
-        .onChange(of: bodyText) { _, _ in hasUnsavedChanges = true }
-        .onChange(of: titleText) { _, _ in hasUnsavedChanges = true }
+        .onChange(of: bodyText)    { _, _ in hasUnsavedChanges = true }
+        .onChange(of: titleText)   { _, _ in hasUnsavedChanges = true }
         .onChange(of: drawingData) { _, _ in hasUnsavedChanges = true }
+        // Track keyboard visibility to show/hide formatting toolbar
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { _ in
+            withAnimation(.easeOut(duration: 0.2)) { isKeyboardVisible = true }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { _ in
+            withAnimation(.easeOut(duration: 0.2)) { isKeyboardVisible = false }
+        }
+        // ── In-app browser: opens when user taps a URL inside the note ─────
+        .sheet(item: $browserURL) { item in
+            InAppBrowserView(url: item.url)
+                .ignoresSafeArea()
+        }
     }
 
-    // MARK: - Title Field
+    // MARK: - Title bar
 
     private var titleField: some View {
         TextField("Title", text: $titleText)
@@ -87,40 +99,36 @@ struct NoteEditorView: View {
             .multilineTextAlignment(.center)
             .submitLabel(.done)
             .focused($titleFocused)
-            .onSubmit { bodyFocused = true }
     }
 
-    // MARK: - Text Editor
+    // MARK: - Text editor (ruled paper + link-aware UITextView)
 
     private var textEditorContent: some View {
         ZStack(alignment: .topLeading) {
             // Ruled paper background
-            GeometryReader { geo in
+            GeometryReader { _ in
                 Canvas { ctx, size in
                     let spacing: CGFloat = 30
-                    let startY: CGFloat = 12
-                    var y = startY
+                    var y: CGFloat = 12
                     while y <= size.height {
-                        let path = Path { p in
+                        let line = Path { p in
                             p.move(to: CGPoint(x: 0, y: y))
                             p.addLine(to: CGPoint(x: size.width, y: y))
                         }
-                        ctx.stroke(path, with: .color(.secondary.opacity(0.12)), lineWidth: 0.7)
+                        ctx.stroke(line, with: .color(.secondary.opacity(0.12)), lineWidth: 0.7)
                         y += spacing
                     }
-                    // Margin line
                     let margin = Path { p in
                         p.move(to: CGPoint(x: 52, y: 0))
                         p.addLine(to: CGPoint(x: 52, y: size.height))
                     }
                     ctx.stroke(margin, with: .color(.red.opacity(0.18)), lineWidth: 1)
                 }
-                .frame(width: geo.size.width, height: geo.size.height)
             }
 
-            // Text placeholder
+            // Placeholder
             if bodyText.isEmpty {
-                Text("Start writing…")
+                Text("Start writing… URLs are tappable links")
                     .font(.system(size: 16))
                     .foregroundStyle(.tertiary)
                     .padding(.leading, 62)
@@ -128,28 +136,15 @@ struct NoteEditorView: View {
                     .allowsHitTesting(false)
             }
 
-            TextEditor(text: $bodyText)
-                .font(.system(size: 16))
-                .lineSpacing(8)
-                .padding(.leading, 56)
-                .padding(.trailing, 16)
-                .padding(.top, 12)
-                .scrollContentBackground(.hidden)
-                .background(.clear)
-                .focused($bodyFocused)
+            // Link-aware editor: URLs appear blue & underlined; tapping opens in-app browser
+            LinkedTextEditor(text: $bodyText, formatting: formatting) { url in
+                browserURL = IdentifiableURL(url: url)
+            }
         }
         .background(Color(.systemBackground))
-        .onTapGesture {
-            bodyFocused = true
-        }
     }
 
-    // MARK: - Helpers
-
-    private var wordCountLabel: String {
-        let words = bodyText.split { $0.isWhitespace }.count
-        return words == 1 ? "1 word" : "\(words) words"
-    }
+    // MARK: - Persistence
 
     private func loadNote() {
         guard

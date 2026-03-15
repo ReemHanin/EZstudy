@@ -19,6 +19,9 @@
 		A10000000000000000000002A /* NoteEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000000A /* NoteEditorView.swift */; };
 		A10000000000000000000002B /* DrawingCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000000B /* DrawingCanvasView.swift */; };
 		A10000000000000000000002C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000000C /* Assets.xcassets */; };
+		A10000000000000000000002D /* InAppBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000000E /* InAppBrowserView.swift */; };
+		A10000000000000000000002E /* LinkedTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000000F /* LinkedTextEditor.swift */; };
+		A10000000000000000000002F /* FormattingToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000010 /* FormattingToolbar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		A10000000000000000000000A /* NoteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorView.swift; sourceTree = "<group>"; };
 		A10000000000000000000000B /* DrawingCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasView.swift; sourceTree = "<group>"; };
 		A10000000000000000000000C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A10000000000000000000000E /* InAppBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppBrowserView.swift; sourceTree = "<group>"; };
+		A10000000000000000000000F /* LinkedTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedTextEditor.swift; sourceTree = "<group>"; };
+		A100000000000000000000010 /* FormattingToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattingToolbar.swift; sourceTree = "<group>"; };
 		A10000000000000000000000D /* EZStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -111,6 +117,9 @@
 				A100000000000000000000009 /* NotebookDetailView.swift */,
 				A10000000000000000000000A /* NoteEditorView.swift */,
 				A10000000000000000000000B /* DrawingCanvasView.swift */,
+				A10000000000000000000000E /* InAppBrowserView.swift */,
+				A10000000000000000000000F /* LinkedTextEditor.swift */,
+				A100000000000000000000010 /* FormattingToolbar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -195,6 +204,9 @@
 				A100000000000000000000029 /* NotebookDetailView.swift in Sources */,
 				A10000000000000000000002A /* NoteEditorView.swift in Sources */,
 				A10000000000000000000002B /* DrawingCanvasView.swift in Sources */,
+				A10000000000000000000002D /* InAppBrowserView.swift in Sources */,
+				A10000000000000000000002E /* LinkedTextEditor.swift in Sources */,
+				A10000000000000000000002F /* FormattingToolbar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
