@@ -1,0 +1,250 @@
+/* ==========================================================================
+   פרטי העברה בנקאית — עיצוב מינימלי, מובייל תחילה
+   ========================================================================== */
+
+:root {
+  --bg: #fdf9f7;
+  --bg-tint: #f8eeea;
+  --surface: #ffffff;
+  --ink: #3a3230;
+  --ink-soft: #9c8e8a;
+  --line: #f0e4e0;
+  --blush: #e8ccc5;
+  --blush-deep: #c99f96;
+  --shadow: 0 1px 2px rgba(58, 50, 48, 0.03), 0 12px 32px rgba(180, 145, 138, 0.09);
+  --radius: 22px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  background-image: radial-gradient(120% 60% at 50% 0%, var(--bg-tint) 0%, var(--bg) 62%);
+  background-repeat: no-repeat;
+  color: var(--ink);
+  font-family: "SF Hebrew", "Assistant", "Heebo", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Noto Sans Hebrew", "Arial Hebrew", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: clamp(48px, 12vh, 88px) 22px calc(40px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ------------------------------- כותרת ---------------------------------- */
+
+.header {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+.logo {
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logo__mark {
+  font-size: 26px;
+  line-height: 1;
+  color: var(--blush-deep);
+}
+
+.title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+/* -------------------------------- כרטיס --------------------------------- */
+
+.card {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 6px 20px;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.field:last-child {
+  border-bottom: none;
+}
+
+.field__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.field__label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  letter-spacing: 0.03em;
+  margin-bottom: 5px;
+}
+
+.field__value {
+  display: block;
+  font-size: 17.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  overflow-wrap: anywhere;
+}
+
+.field__value[dir="ltr"] {
+  text-align: right;
+}
+
+/* ---------------------------- כפתור העתקה ------------------------------- */
+
+.copy {
+  flex: none;
+  position: relative;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg);
+  color: var(--blush-deep);
+  font: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.22s ease, color 0.22s ease,
+    border-color 0.22s ease, width 0.22s ease, transform 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.copy:active {
+  transform: scale(0.94);
+}
+
+.copy__icon svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+}
+
+.copy__done {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  pointer-events: none;
+}
+
+.copy.is-copied {
+  background: var(--blush);
+  border-color: var(--blush);
+  color: #5c443f;
+  width: 92px;
+}
+
+.copy.is-copied .copy__icon {
+  opacity: 0;
+}
+
+.copy.is-copied .copy__done {
+  opacity: 1;
+}
+
+.copy:focus-visible {
+  outline: 2px solid var(--blush-deep);
+  outline-offset: 2px;
+}
+
+/* ------------------------------ הערה תחתונה ----------------------------- */
+
+.note {
+  margin: 30px 8px 0;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------- נגישות --------------------------------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* מסכים רחבים — שומרים על אותה פרופורציה, מעט יותר אוויר */
+@media (min-width: 600px) {
+  .card {
+    padding: 8px 26px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+}

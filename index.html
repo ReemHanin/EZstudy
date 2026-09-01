@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fdf8f6" />
+  <meta name="description" content="פרטי העברה בנקאית" />
+  <title>פרטי העברה בנקאית</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page">
+
+    <header class="header">
+      <div class="logo" aria-label="לוגו העסק">
+        <!-- ניתן להחליף ב־<img src="logo.png" alt="שם העסק"> -->
+        <span class="logo__mark">✦</span>
+      </div>
+      <h1 class="title">פרטי העברה בנקאית</h1>
+    </header>
+
+    <section class="card" aria-label="פרטי חשבון">
+
+      <div class="field">
+        <div class="field__text">
+          <span class="field__label">שם בעל החשבון</span>
+          <span class="field__value" id="value-name">ישראלה ישראלי</span>
+        </div>
+        <button class="copy" type="button" data-copy-target="value-name" aria-label="העתקת שם בעל החשבון">
+          <span class="copy__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="11" height="11" rx="3" />
+              <path d="M5 15V7a3 3 0 0 1 3-3h7" />
+            </svg>
+          </span>
+          <span class="copy__done" aria-hidden="true">הועתק ✓</span>
+        </button>
+      </div>
+
+      <div class="field">
+        <div class="field__text">
+          <span class="field__label">בנק</span>
+          <span class="field__value" id="value-bank">בנק הפועלים (12)</span>
+        </div>
+        <button class="copy" type="button" data-copy-target="value-bank" aria-label="העתקת שם הבנק">
+          <span class="copy__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="11" height="11" rx="3" />
+              <path d="M5 15V7a3 3 0 0 1 3-3h7" />
+            </svg>
+          </span>
+          <span class="copy__done" aria-hidden="true">הועתק ✓</span>
+        </button>
+      </div>
+
+      <div class="field">
+        <div class="field__text">
+          <span class="field__label">סניף</span>
+          <span class="field__value" id="value-branch" dir="ltr">613</span>
+        </div>
+        <button class="copy" type="button" data-copy-target="value-branch" aria-label="העתקת מספר הסניף">
+          <span class="copy__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="11" height="11" rx="3" />
+              <path d="M5 15V7a3 3 0 0 1 3-3h7" />
+            </svg>
+          </span>
+          <span class="copy__done" aria-hidden="true">הועתק ✓</span>
+        </button>
+      </div>
+
+      <div class="field">
+        <div class="field__text">
+          <span class="field__label">מספר חשבון</span>
+          <span class="field__value" id="value-account" dir="ltr">123456789</span>
+        </div>
+        <button class="copy" type="button" data-copy-target="value-account" aria-label="העתקת מספר החשבון">
+          <span class="copy__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="11" height="11" rx="3" />
+              <path d="M5 15V7a3 3 0 0 1 3-3h7" />
+            </svg>
+          </span>
+          <span class="copy__done" aria-hidden="true">הועתק ✓</span>
+        </button>
+      </div>
+
+    </section>
+
+    <p class="note">לאחר ביצוע ההעברה, ניתן לשלוח אלינו את אישור התשלום.</p>
+
+    <div class="sr-only" role="status" aria-live="polite" id="live-region"></div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
